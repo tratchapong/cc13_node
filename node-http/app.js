@@ -46,17 +46,20 @@ function httpHandler(req, res) {
       console.log(parsedBody.split('='))
       user = parsedBody.split('=')[1].trim()
       console.log(user)
+      res.setHeader('Content-Type', 'text/html')
       res.write(head)
       res.write(welcome(user))
       res.end(footer)
     })
   }
   else if(url === '/welcome') {
+    res.setHeader('Content-Type', 'text/html')
     res.write(head)
     res.write(welcome(user))
     res.end(footer)
   } 
   else if(url === '/'){
+    res.setHeader('Content-Type', 'text/html')
     res.write(head)
     res.write(homepage)
     res.end(footer)
