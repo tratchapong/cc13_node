@@ -1,5 +1,8 @@
+// Add redirect when notFound via Front-end script
+
 const http = require('http')
 
+let user =''
 
 const head = `
 <html>
@@ -41,8 +44,6 @@ function redirect() {
 }
 
 function httpHandler(req, res) {
-  console.log('httpHandler run..')
-  let user =''
   const {url, method, headers : {host}} = req
   
   if(url === '/welcome' && method === 'POST') {
@@ -70,7 +71,7 @@ function httpHandler(req, res) {
     res.end(footer)
   } 
   else if(url === '/'){
-    // res.setHeader('Content-Type', 'text/html')
+    res.setHeader('Content-Type', 'text/html')
     res.write(head)
     res.write(homepage)
     res.end(footer)
