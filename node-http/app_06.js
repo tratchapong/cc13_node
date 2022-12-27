@@ -1,4 +1,4 @@
-// Add redirect when notFound via Front-end script
+// Add redirect when notFound (after 2 sec.) via Front-end script
 
 const http = require('http')
 

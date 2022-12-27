@@ -1,6 +1,6 @@
+// add Navbar in head
+
 const http = require('http')
-const url_lib = require('url')
-const querystring = require('querystring')
 
 let user =''
 const head = `
@@ -55,12 +55,9 @@ function redirect() {
 }
 
 function httpHandler(req, res) {
-  // console.log('httpHandler run..')
-  const { method, headers : {host}} = req
-  url = url_lib.parse(req.url).pathname
-  console.log(url)
-  query = querystring.parse(req.url)
-
+  console.log('httpHandler run..')
+  const {url, method, headers : {host}} = req
+  
   if(url === '/welcome' && method === 'POST') {
     const body= []
     req.on('data', chunk => {
