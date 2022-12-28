@@ -15,11 +15,10 @@ exports.navbar = `
   <hr>
 `
 
-
 exports.form = `
   <form action='/newtodo' method='post'>
     <input name='title'>
-    <button>Add</button>
+    <button>ok</button>
   </form>
 `
 exports.todo = (list) => {
