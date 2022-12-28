@@ -1,11 +1,13 @@
 const html = require('./html-chunk')
 const fs = require('fs')
-const url = require('url')
+const url_lib = require('url')
 const querystring = require('querystring')
+const bodyParser = require('body-parser')
 
 const users = ['andy', 'bobby', 'candy', 'danny']
 module.exports = (req, res) => {
-  const {url, method} = req
+  const {method} = req
+  let url = url_lib.parse(req.url).pathname
   res.setHeader('Content-Type', 'text/html')
   if (url==='/') {
     const checkuser = querystring.parse(req.headers.cookie, '; ').username
@@ -24,12 +26,10 @@ module.exports = (req, res) => {
     return res.end(html.footer)
   }
   else if(url==='/newtodo' && method === 'POST') {
-    const body = []
-    req.on('data', chunk => body.push(chunk))
-    req.on('end', ()=> {
-      const parsedBody = Buffer.concat(body).toString()
-      // const title = parsedBody.split('=')[1].replaceAll('+', ' ')
-      const title = parsedBody.split('=')[1]
+    
+    bodyParser.urlencoded({ extended: false })(req, res, () => {
+      // console.log(req.body.title);  // The parsed request body is available in the req.body object
+      let {title} = req.body
       let rawlist = fs.readFileSync('./data.json', 'utf8')
       let list = JSON.parse(rawlist)
       list.push(title)
@@ -37,7 +37,7 @@ module.exports = (req, res) => {
       res.statusCode = 302
       res.setHeader('Location', '/')
       return res.end()
-    })
+    });
   }
   else if(url==='/letlogin' && method==='POST') {
     const body = []
