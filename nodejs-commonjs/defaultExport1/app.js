@@ -1,13 +1,10 @@
 const myrandom = require('./util')
-const {sysInfo} = require('./util')
 
 let arr = []
 
 for(let i=1; i<5; i++)
   arr.push(myrandom())
 console.log(arr)
-
-console.log(sysInfo())
 
 
 

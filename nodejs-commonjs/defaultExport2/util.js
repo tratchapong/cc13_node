@@ -1,6 +1,6 @@
 const os = require('os')
 
-function random() {
+module.exports = () => {
   return Math.floor(Math.random()*100)
 }
 
@@ -12,8 +12,8 @@ function sysInfo() {
   }
 }
 
-module.exports = random
-module.exports.sysInfo = sysInfo
+
+
 
 
 

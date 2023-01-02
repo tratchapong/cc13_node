@@ -12,8 +12,8 @@ function sysInfo() {
   }
 }
 
-module.exports = random
-module.exports.sysInfo = sysInfo
+module.exports = {random, sysInfo}
+
 
 
 

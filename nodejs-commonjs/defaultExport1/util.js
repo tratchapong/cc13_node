@@ -13,7 +13,7 @@ function sysInfo() {
 }
 
 module.exports = random
-module.exports.sysInfo = sysInfo
+
 
 
 

@@ -1,10 +1,10 @@
 const os = require('os')
 
-function random() {
+module.exports.random = () => {
   return Math.floor(Math.random()*100)
 }
 
-function sysInfo() {
+exports.sysInfo = () => {
   return {
     cpu : os.cpus()[0].model,
     memory : os.totalmem(),
@@ -12,8 +12,8 @@ function sysInfo() {
   }
 }
 
-module.exports = random
-module.exports.sysInfo = sysInfo
+
+
 
 
 
