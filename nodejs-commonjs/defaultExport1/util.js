@@ -13,6 +13,7 @@ function sysInfo() {
 }
 
 module.exports = random
+console.log(module.exports)
 
 
 
