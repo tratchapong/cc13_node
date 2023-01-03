@@ -9,10 +9,7 @@ const head = `
   <title>Home Page</title>
 </head>
 <body>
-<nav style='display: flex; gap: 4px;'>
-<a href='/'>Home</a>
-<a href='/welcome'>Welcome</a>
-</nav>
+
 <br>
 `
 

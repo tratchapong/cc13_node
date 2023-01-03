@@ -10,7 +10,7 @@ module.exports = (req, res) => {
     console.log(rawlist.split())
     list = rawlist.split('\r\n')
     res.write(html.head)
-    res.write(html.navbar)
+    // res.write(html.navbar)
     res.write(html.form)
     res.write(html.todo(list))
     res.end(html.footer)
