@@ -1,4 +1,4 @@
-// POST body
+// apart html chunk + list
 const http = require('http')
 const student = ['Erk', 'Tum', 'Ope', 'Pink', 'Mark']
 
