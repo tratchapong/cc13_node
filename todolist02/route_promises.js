@@ -1,6 +1,5 @@
 const html = require('./html-chunk')
 const fs = require('fs/promises')
-const querystring = require('querystring')
 
 module.exports = (req, res) => {
   const {url, method} = req
@@ -21,9 +20,8 @@ module.exports = (req, res) => {
     const body = []
     req.on('data', chunk => body.push(chunk))
     req.on('end', ()=> {
-      const bufferBody = Buffer.concat(body).toString()
-      const parsedBody = querystring.parse(bufferBody )
-      const {title} = parsedBody
+      const parsedBody = Buffer.concat(body).toString()
+      const title = parsedBody.split('=')[1].replaceAll('+', ' ')
       fs.readFile('./data.json')
       .then( rawlist => {
         let list = JSON.parse(rawlist)
