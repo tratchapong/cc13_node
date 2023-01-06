@@ -15,7 +15,7 @@ module.exports = (req, res) => {
       res.write(html.form)
       res.write(html.todo(list))
       res.end(html.footer)
-    })
+    }).catch( err=> console.log(err))
   }
   else if(url==='/newtodo' && method === 'POST') {
     const body = []
@@ -29,7 +29,7 @@ module.exports = (req, res) => {
         res.statusCode = 302
         res.setHeader('Location', '/')
         return res.end()
-      })
+      }).catch( err=> console.log(err))
     })
   }else {
     res.write(html.head)
