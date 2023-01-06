@@ -1,14 +1,14 @@
 const html = require('./html-chunk')
 const fs = require('fs/promises')
 const querystring = require('querystring')
+const db = require('./db/db')
 
 module.exports = (req, res) => {
   const {url, method} = req
   res.setHeader('Content-Type', 'text/html')
   if (url==='/') {
-    fs.readFile('./data.json')
-    .then( rawlist => {
-      let list = JSON.parse(rawlist)
+    db.getList()
+    .then( list => {
       console.log(list)
       res.write(html.head)
       res.write(html.navbar)
@@ -24,14 +24,8 @@ module.exports = (req, res) => {
       const bufferBody = Buffer.concat(body).toString()
       const parsedBody = querystring.parse(bufferBody )
       const {title} = parsedBody
-      fs.readFile('./data.json')
-      .then( rawlist => {
-        let list = JSON.parse(rawlist)
-        list.push(title)
-        return list})
-      .then(list => {
-        return fs.writeFile('./data.json', JSON.stringify(list,null,2))
-      }).then( ()=> {
+      db.addList(title)
+      .then( ()=> {
         res.statusCode = 302
         res.setHeader('Location', '/')
         return res.end()
