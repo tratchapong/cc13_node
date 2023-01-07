@@ -23,7 +23,6 @@ const server = http.createServer((req, res) => {
   }
 });
 
-// Start the server listening on port 3000
-server.listen(5000, () => {
-  console.log('API listening on port 5000');
+server.listen(8000, () => {
+  console.log('API listening on port 8000');
 });

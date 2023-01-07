@@ -1,5 +1,5 @@
 const http = require('http')
-const url_lib = require('url')
+const url = require('url')
 const querystring = require('querystring')
 
 const data = [
@@ -8,18 +8,18 @@ const data = [
   { title: 'Learn Javascript'},
 ]
 
-function handleRequest(req, res) {
-  url = url_lib.parse(req.url,true).pathname
-  console.log(url)
-  if( url==='/todo') {
+function httpHandle(req, res) {
+  let {pathname} = url.parse(req.url,true)
+  
+  if( pathname==='/todo') {
     res.setHeader('Content-type', 'application/json')
-    // res.statusCode = 200
+    res.statusCode = 200
     res.end(JSON.stringify(data))
-  } else if( url.match(/\/todo\/\d+/g) ) {
-    let id = +url.split('/')[2]
-    if(isNaN(id))
-      return res.end(JSON.stringify({"msg":"Enter number only"}))
-    console.log(id)
+  } 
+  else if( pathname.match(/\/todo\/\d+/g) ) {
+    let id = +pathname.split('/')[2]
+    // if(isNaN(id))
+    //   return res.end(JSON.stringify({"msg":"Enter number only"}))
     res.setHeader('Content-type', 'application/json')
     if(id>data.length)
       return res.end(JSON.stringify({ "msg":"Have no data"}))
@@ -29,9 +29,8 @@ function handleRequest(req, res) {
     res.statusCode = 404
     res.end(JSON.stringify({"msg" : "Path Not Found"}))
   }
-
 }
 
-const server = http.createServer(handleRequest)
+const server = http.createServer(httpHandle)
 
-server.listen(5000)
+server.listen(8000)

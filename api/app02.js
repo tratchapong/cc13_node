@@ -1,3 +1,5 @@
+// step02 : api to get data from file(json)
+
 const http = require('http')
 const url = require('url');
 const db = require('./db/db')
