@@ -2,9 +2,9 @@ const mysql = require('mysql2')
 
 const pool = mysql.createPool({
   host: 'db4free.net',
-  user: 'ratchapong',
-  password: '123456789',
-  database: 'rtlab01'
+  user: '',
+  password: '',
+  database: ''
 }).promise()
 
 module.exports = pool
